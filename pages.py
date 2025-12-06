@@ -40,17 +40,19 @@ class UrbanRoutesPage:
 
     def   enter_from_location(self, from_text):
           self.driver.find_element(*self.FROM_LOCATION).send_keys(from_text)
+          self.driver.find_element(*self.TO_LOCATION).send_keys(from_text)
 
     def   get_from(self):
           return self.driver.find_element(*self.FROM_LOCATION).get_attribute("value")
 
     def   enter_to_location(self, to_text):
+          self.driver.find_element(*self.FROM_LOCATION).send_keys(to_text)
           self.driver.find_element(*self.TO_LOCATION).send_keys(to_text)
 
     def   get_to(self):
           return self.driver.find_element(*self.TO_LOCATION).get_attribute("value")
 
-    def   click_call_taxi(self):
+    def   click_call_taxi_button(self):
           WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.CALL_TAXI_BUTTON)).click()
 
     def   click_supportive_tariff(self):
