@@ -88,7 +88,6 @@ class TestUrbanRoutes:
          routes_page.enter_to_location(data.ADDRESS_TO)
          routes_page.click_call_taxi_button()
          routes_page.click_supportive_tariff()
-         routes_page.add_ice_button()
          assert routes_page.get_ice_cream_count() == 2
          number_of_ice_creams = 2  # Define a variable for the number of iterations
 
