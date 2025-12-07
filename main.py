@@ -28,7 +28,7 @@ class TestUrbanRoutes:
     def  test_select_plan(self):
          self.driver.get(data.URBAN_ROUTES_URL)
          routes_page = UrbanRoutesPage(self.driver)
-         routes_page.enter_to_location(data.ADDRESS_FROM)
+         routes_page.enter_from_location(data.ADDRESS_FROM)
          routes_page.enter_to_location(data.ADDRESS_TO)
          routes_page.click_call_taxi_button()
          routes_page.click_supportive_tariff()
@@ -37,7 +37,7 @@ class TestUrbanRoutes:
     def  test_fill_phone_number(self):
          self.driver.get(data.URBAN_ROUTES_URL)
          routes_page = UrbanRoutesPage(self.driver)
-         routes_page.enter_to_location(data.ADDRESS_FROM)
+         routes_page.enter_from_location(data.ADDRESS_FROM)
          routes_page.enter_to_location(data.ADDRESS_TO)
          routes_page.click_call_taxi_button()
          routes_page.click_supportive_tariff()
@@ -48,7 +48,7 @@ class TestUrbanRoutes:
     def  test_fill_card(self):
          self.driver.get(data.URBAN_ROUTES_URL)
          routes_page = UrbanRoutesPage(self.driver)
-         routes_page.enter_to_location(data.ADDRESS_FROM)
+         routes_page.enter_from_location(data.ADDRESS_FROM)
          routes_page.enter_to_location(data.ADDRESS_TO)
          routes_page.click_call_taxi_button()
          routes_page.click_supportive_tariff()
@@ -61,7 +61,7 @@ class TestUrbanRoutes:
     def  test_car_search_model(self):
          self.driver.get(data.URBAN_ROUTES_URL)
          routes_page: UrbanRoutesPage = UrbanRoutesPage(self.driver)
-         routes_page.enter_to_location(data.ADDRESS_FROM)
+         routes_page.enter_from_location(data.ADDRESS_FROM)
          routes_page.enter_to_location(data.ADDRESS_TO)
          routes_page.click_call_taxi_button()
          routes_page.click_supportive_tariff()
@@ -88,7 +88,7 @@ class TestUrbanRoutes:
          routes_page.enter_to_location(data.ADDRESS_TO)
          routes_page.click_call_taxi_button()
          routes_page.click_supportive_tariff()
-         routes_page.add_ice_button(count=2)
+         routes_page.add_ice_button()
          assert routes_page.get_ice_cream_count() == 2
          number_of_ice_creams = 2  # Define a variable for the number of iterations
 

@@ -9,8 +9,8 @@ class UrbanRoutesPage:
     FROM_LOCATION = (By.ID,"from")
     TO_LOCATION = (By.ID,"to")
     CALL_TAXI_BUTTON = (By.XPATH, '//button[text()="Call a taxi"]')
-    SUPPORTIVE_ICON_LOCATOR = (By.XPATH,'<div class="tcard-icon"><img src="/static/media/kids.27f92282.svg" alt="Supportive"></div>')
-    SUPPORTIVE_ACTIVE_LOCATOR = (By.XPATH,'<div class="tcard-title">Supportive</div>')
+    SUPPORTIVE_ICON_LOCATOR = (By.XPATH,'//div[text()="Supportive"]')
+    SUPPORTIVE_ACTIVE_LOCATOR = (By.CSS_SELECTOR, '.tcard.active .tcard-title')
     PHONE_NUMBER_LOCATOR = (By.XPATH,'<div class="np-text">Phone number</div>')
     PHONE_NUMBER_FIELD = (By.XPATH, '<label for="phone" class="label">Phone number</label>')
     NEXT_LOCATION = (By.XPATH, '<button type="submit" class="button full">Next</button>')
@@ -40,14 +40,14 @@ class UrbanRoutesPage:
 
     def   enter_from_location(self, from_text):
           self.driver.find_element(*self.FROM_LOCATION).send_keys(from_text)
-          self.driver.find_element(*self.TO_LOCATION).send_keys(from_text)
+
 
     def   get_from(self):
           return self.driver.find_element(*self.FROM_LOCATION).get_attribute("value")
 
     def   enter_to_location(self, to_text):
           self.driver.find_element(*self.FROM_LOCATION).send_keys(to_text)
-          self.driver.find_element(*self.TO_LOCATION).send_keys(to_text)
+
 
     def   get_to(self):
           return self.driver.find_element(*self.TO_LOCATION).get_attribute("value")
@@ -59,7 +59,7 @@ class UrbanRoutesPage:
           self.driver.find_element(*self.SUPPORTIVE_ICON_LOCATOR).click()
 
     def   get_supportive_status(self):
-          return self.driver.find_element(*self.SUPPORTIVE_ACTIVE_LOCATOR).text_attribute("value")
+          return self.driver.find_element(*self.SUPPORTIVE_ACTIVE_LOCATOR).get_attribute("value")
 
     def   add_phone_number(self):
           self.driver.find_element(*self.PHONE_NUMBER_LOCATOR).click()
