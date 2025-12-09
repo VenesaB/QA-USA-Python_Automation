@@ -9,14 +9,14 @@ class UrbanRoutesPage:
     FROM_LOCATION = (By.ID,"from")
     TO_LOCATION = (By.ID,"to")
     CALL_TAXI_BUTTON = (By.XPATH, '//button[text()="Call a taxi"]')
-    SUPPORTIVE_ICON_LOCATOR = (By.XPATH,'//div[text()="Supportive"]')
+    SUPPORTIVE_ICON_LOCATOR = (By.XPATH, '(//div[text()="Supportive"][1])')
     SUPPORTIVE_ACTIVE_LOCATOR = (By.CSS_SELECTOR, '.tcard.active .tcard-title')
     PHONE_NUMBER_LOCATOR = (By.XPATH,'<div class="np-text">Phone number</div>')
-    PHONE_NUMBER_FIELD = (By.XPATH, '<label for="phone" class="label">Phone number</label>')
-    NEXT_LOCATION = (By.XPATH, '<button type="submit" class="button full">Next</button>')
-    PHONE_CODE_LOCATOR = (By.XPATH, '<div class="head">Enter the code from the SMS</div>')
+    PHONE_NUMBER_FIELD_LOCATOR = (By.CSS_SELECTOR, '.np-button .np-text')
+    NEXT_BUTTON = (By.XPATH, '//button[@class="button full" and text()="Next"]')
+    PHONE_CODE_LOCATOR = (By.CSS_SELECTOR, '.input-container > #code')
     PHONE_CODE_FIELD = (By.XPATH, '<label for="code" class="label">Enter the code</label>')
-    CONFIRM_LOCATOR = (By.XPATH, '<button type="submit" class="button full">Confirm</button>')
+    CONFIRM_BUTTON = (By.XPATH, '//button[text()="Confirm"]')
     PAYMENT_LOCATOR = (By.XPATH, '<div class="pp-title">Add card</div>')
     ADD_CARD_LOCATOR = (By.XPATH, '<div class="pp-separator"></div>')
     CARD_NUMBER_LOCATOR = (By.XPATH, '<input type="text" id="number" name="number" placeholder="1234 0000 4321" class="card-input" value="">')
@@ -46,7 +46,7 @@ class UrbanRoutesPage:
           return self.driver.find_element(*self.FROM_LOCATION).get_attribute("value")
 
     def   enter_to_location(self, to_text):
-          self.driver.find_element(*self.FROM_LOCATION).send_keys(to_text)
+          self.driver.find_element(*self.TO_LOCATION).send_keys(to_text)
 
 
     def   get_to(self):
@@ -59,7 +59,7 @@ class UrbanRoutesPage:
           self.driver.find_element(*self.SUPPORTIVE_ICON_LOCATOR).click()
 
     def   get_supportive_status(self):
-          return self.driver.find_element(*self.SUPPORTIVE_ACTIVE_LOCATOR).get_attribute("value")
+          return self.driver.find_element(*self.SUPPORTIVE_ACTIVE_LOCATOR).text
 
     def   add_phone_number(self):
           self.driver.find_element(*self.PHONE_NUMBER_LOCATOR).click()
@@ -72,7 +72,7 @@ class UrbanRoutesPage:
           return code
 
     def   click_confirm_button(self):
-          self.driver.find_element(*self.CONFIRM_LOCATOR).click()
+          self.driver.find_element(*self.CONFIRM_BUTTON).click()
 
     def   get_payment_method(self):
           return self.driver.find_element(*self.PAYMENT_LOCATOR).text_attribute("value")
