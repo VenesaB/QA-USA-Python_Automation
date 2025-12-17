@@ -57,7 +57,6 @@ class TestUrbanRoutes:
            routes_page.click_add_payment_method()
            routes_page.enter_card_number(data.CARD_NUMBER)
            routes_page.type_card_code(data.CARD_CODE)
-           routes_page.click_link_button()
            assert routes_page.get_card_number() == data.CARD_NUMBER
 
 
